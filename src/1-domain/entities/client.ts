@@ -18,20 +18,6 @@ export class Client extends Entity<IClient> {
    }
 
     static create(props:IClient, id?:string) {
-        const { name, email, password, dev_id } = props
-
-        if(!name){
-            return Errors([name], 9)
-        }
-        if(!email){
-            return Errors([email], 9)
-        }
-        if(!password){
-            return Errors([password], 9)
-        }
-        if(!dev_id){
-            return Errors([dev_id], 9)
-        }
 
         const client = new Client({
             ...props,

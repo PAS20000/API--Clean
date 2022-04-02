@@ -1,10 +1,7 @@
-import { IProduct } from "../../../1-domain/entities/product";
+import { Product } from "../../../1-domain/entities/product";
+import { IEroors } from "../../../utils/errors/Errors";
 
-export class ProductRepo {
-
-    async create (props:IProduct) {
-        //inserir no banco
-
-        return
-    }
+export interface ProductReopo {
+    findById( id: string ) : Promise<Product | IEroors>
+    findByTitle( title: string ) : Promise<Product | IEroors>
 }

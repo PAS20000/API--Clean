@@ -54,7 +54,7 @@ describe('Dev Domain', () => {
             password:'222',
             signature:{free:true, gold:false, platinum:false},
        }, {repeatEmail:'pas@gmail.com', repeatPassword:'222', insertInMemoryDevRepo:true})
-       
+    
        expect(resp).toHaveProperty('error', true)
        expect(resp).toHaveProperty('code', 4)
     })

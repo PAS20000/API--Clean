@@ -1,4 +1,3 @@
-import { Errors } from "../../utils/errors/Errors"
 import { Entity } from "../core/Entity"
 
 export interface IProduct {

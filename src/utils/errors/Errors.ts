@@ -12,6 +12,7 @@ export function Errors({params,code}:IEroors) {
        3:`This email: ${params[0]} not suportted providers: [ ${params[1]}]`,
        4:`Exist ${params[0]} in database.`,
        5:`${params[0]} null`,
+       6:`Does ${params[0]} not exist in the database`,
        9:`Invalid lengths`
     }
 

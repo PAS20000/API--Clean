@@ -1,16 +1,16 @@
-import { IDev,  Dev } from "../../../../1-domain/entities/dev";
+import { IOtaku,  Otaku } from "../../../../1-domain/entities/otaku";
 import { Errors, IEroors } from "../../../../utils/errors/Errors";
-import { devRepo } from "../../../repositories/Dev/devRepo";
+import { otakuRepo } from "../../../repositories/Otaku/otakuRepo";
 
 
-export class CreateDev {
+export class CreateOtaku {
     constructor(
-        private devRepo:devRepo
+        private otakuRepo:otakuRepo
     ){}
 
 
-    async execute ({email, password, name, signature }:IDev, {repeatPassword, repeatEmail}) : Promise<Dev | IEroors> {
-        const existDev = await this.devRepo.findByEmail(email)
+    async execute ({email, password, name, offices }:IOtaku, {repeatPassword, repeatEmail}) : Promise<Otaku | IEroors> {
+        const existOtaku = await this.otakuRepo.findByEmail(email)
         const providersEmailArray = ['hotmail.com', 'gmail.com', 'protonmail.com', 'outlook.com']
         const existInArray = providersEmailArray.map(e => email.split('@').includes(e)).indexOf(true)
         
@@ -23,12 +23,8 @@ export class CreateDev {
         if(!password){
             return Errors({params:['password'], code:5})
         }
-        if(!signature){
-            return Errors({params:['signature'], code:5})
-        }
 
-
-        if(existDev){
+        if(existOtaku){
             return Errors({params:[email], code:4})
         }
 
@@ -56,13 +52,13 @@ export class CreateDev {
             return Errors({params:[email, repeatEmail], code:2})
         }
 
-        const dev = Dev.create({
+        const otaku = Otaku.create({
             name,
             email,
             password,
-            signature,
+            offices: offices ?? ['OTAKU']
         })
 
-        return dev
+        return otaku
     }
 }

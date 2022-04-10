@@ -49,7 +49,7 @@ describe('Otaku Domain', () => {
        }, {repeatEmail:'pas@gmail.com', repeatPassword:'222', insertInMemoryOtakuRepo:true})
     
        expect(resp).toHaveProperty('error', true)
-       expect(resp).toHaveProperty('code', 4)
+       expect(resp).toHaveProperty('_id', 4)
     })
    
    test('Should not create otaku with invalid provider email' , async () => {
@@ -60,7 +60,7 @@ describe('Otaku Domain', () => {
         }, {repeatEmail:'@fakeProvider', repeatPassword:'12345'})
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 3)
+        expect(resp).toHaveProperty('_id', 3)
    })
 
    test('Should not create otaku with invalid repeatEmail', async () => {
@@ -68,13 +68,13 @@ describe('Otaku Domain', () => {
         const resp = await OtakuFactory(otaku, { repeatPassword:otaku.password , repeatEmail:'' })
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 2)
+        expect(resp).toHaveProperty('_id', 2)
    })
    test('Should not create otaku with invalid repeatPassword', async () => {
         const resp = await OtakuFactory(otaku, {repeatEmail:otaku.email, repeatPassword:'00'})
     
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 2)
+        expect(resp).toHaveProperty('_id', 2)
     })
     test('Should not create otaku with invalid email', async () => {
         const resp = await OtakuFactory({
@@ -84,7 +84,7 @@ describe('Otaku Domain', () => {
         },{repeatEmail:'testeprotonmail.com', repeatPassword:'12345'})
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 1)
+        expect(resp).toHaveProperty('_id', 1)
     })
     test('Should not create otaku with invalid email/repeatEmail length', async () => {
     
@@ -95,7 +95,7 @@ describe('Otaku Domain', () => {
         }, {repeatEmail:'testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee@protonmail.com', repeatPassword:'12345'})
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 9)
+        expect(resp).toHaveProperty('_id', 9)
     })
     test('Should not create otaku with invalid name length', async () => {
 
@@ -106,7 +106,7 @@ describe('Otaku Domain', () => {
         }, {repeatEmail:'teste@protonmail.com', repeatPassword:'12345'})
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 9)
+        expect(resp).toHaveProperty('_id', 9)
     })
     test('Should not create otaku with invalid password/repeatPassword length', async () => {
 
@@ -117,7 +117,7 @@ describe('Otaku Domain', () => {
         }, { repeatPassword:'123455555555555555555555' , repeatEmail:'teste@protonmail.com'})
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 9)
+        expect(resp).toHaveProperty('_id', 9)
     })
     test('Should not create otaku with invalid name null', async () => {
          
@@ -128,7 +128,7 @@ describe('Otaku Domain', () => {
         }, { repeatPassword:'12345' , repeatEmail:'teste@protonmail.com'})
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 5)
+        expect(resp).toHaveProperty('_id', 5)
     })
     test('Should not create otaku with invalid password null', async () => {    
 
@@ -139,14 +139,13 @@ describe('Otaku Domain', () => {
         }, { repeatPassword:null , repeatEmail:'teste@protonmail.com'})
         
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 5)
+        expect(resp).toHaveProperty('_id', 5)
     })
     test('otaku created', async () => {
 
         const resp = await OtakuFactory(otaku, { repeatPassword:otaku.password, repeatEmail:otaku.email })
     
         expect(resp).toHaveProperty('_id')
-        expect(resp).toHaveProperty('props')
-        //console.log(resp)
+        expect(resp).toHaveProperty('props', resp.props)
    })
 })

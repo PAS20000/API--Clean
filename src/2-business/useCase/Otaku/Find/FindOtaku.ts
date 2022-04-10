@@ -13,7 +13,7 @@ export class FindOtakuById {
         const otaku = await this.otakuRepo.findById(id)
         
         if(!otaku){
-            return Errors({params:['otaku_id: ' + id], code:6})
+            return Errors({props:['otaku_id: ' + id], _id:6, file:'FindOtaku.ts'})
         }
 
         return otaku
@@ -29,7 +29,7 @@ export class FindOtakuByEmail {
         const otaku = await this.otakuRepo.findByEmail(email)
         
         if(!otaku){
-            return Errors({params:['otaku_email: ' + email], code:6})
+            return Errors({props:['otaku_email: ' + email], _id:6, file:'FindOtaku.ts'})
         }
 
         return otaku
@@ -43,9 +43,9 @@ export class FindOtakuByOffices {
 
     async execute (office:string) : Promise<Otaku[] | IEroors> {
         const otakus = await this.otakuRepo.findByOffices(office)
-        
+
         if(!otakus[0]){
-            return Errors({params:['otaku_office: ' + office], code:6})
+            return Errors({props:['otaku_office: ' + office], _id:6, file:'FindOtaku.ts'})
         }
 
         return otakus

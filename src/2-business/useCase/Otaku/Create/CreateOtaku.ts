@@ -15,24 +15,24 @@ export class CreateOtaku {
         const existInArray = providersEmailArray.map(e => email.split('@').includes(e)).indexOf(true)
         
         if(!name){
-            return Errors({params:['name'], code:5})
+            return Errors({props:['name'], _id:5, file:'CreateOtaku.ts'})
         }
         if(!email){
-            return Errors({params:['email'], code:5})
+            return Errors({props:['email'], _id:5, file:'CreateOtaku.ts'})
         }
         if(!password){
-            return Errors({params:['password'], code:5})
+            return Errors({props:['password'], _id:5, file:'CreateOtaku.ts'})
         }
 
         if(existOtaku){
-            return Errors({params:[email], code:4})
+            return Errors({props:[email], _id:4, file:'CreateOtaku.ts'})
         }
 
         if(!email.split('').includes('@')){
-            return Errors({params:[email], code:1})
+            return Errors({props:[email], _id:1, file:'CreateOtaku.ts'})
         }
         if(existInArray === -1){
-            return Errors({params:[email, providersEmailArray.toString()], code:3})
+            return Errors({props:[email, providersEmailArray.toString()], _id:3, file:'CreateOtaku.ts'})
         }
         if(
             email.length > 48 || 
@@ -42,14 +42,14 @@ export class CreateOtaku {
             name && name.length > 48
         )
             {
-                return Errors({params:[], code:9})
+                return Errors({props:[], _id:9, file:'CreateOtaku.ts'})
             }
         if(password !== repeatPassword){
-            return Errors({params:[password, repeatPassword], code:2})
+            return Errors({props:[password, repeatPassword], _id:2, file:'CreateOtaku.ts'})
 
         }
         if(email !== repeatEmail){
-            return Errors({params:[email, repeatEmail], code:2})
+            return Errors({props:[email, repeatEmail], _id:2, file:'CreateOtaku.ts'})
         }
 
         const otaku = Otaku.create({

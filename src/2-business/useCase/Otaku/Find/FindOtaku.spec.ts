@@ -15,7 +15,7 @@ describe('Otaku domain', () => {
         const resp = await sut.execute(fakeId)
 
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 6)
+        expect(resp).toHaveProperty('_id', 6)
     })
     test('FindByEmail otaku, does not exist in the database' , async () => {
         const otakuRepo = new InmemoryOtakuRepo()
@@ -27,7 +27,7 @@ describe('Otaku domain', () => {
         const resp = await sut.execute(fakeEmail)
 
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 6)
+        expect(resp).toHaveProperty('_id', 6)
     })
     test('FindOtakuByOffices otaku, does not exist in the database' , async () => {
         const otakuRepo = new InmemoryOtakuRepo()
@@ -39,7 +39,7 @@ describe('Otaku domain', () => {
         const resp = await sut.execute(fakeOffice)
 
         expect(resp).toHaveProperty('error', true)
-        expect(resp).toHaveProperty('code', 6)
+        expect(resp).toHaveProperty('_id', 6)
     })
     test('FindOtakuById otaku, exist in the database' , async () => {
         const otakuRepo = new InmemoryOtakuRepo()
@@ -55,8 +55,8 @@ describe('Otaku domain', () => {
        
         otakuRepo.otakus.push(OTAKU)
         const resp = await sut.execute(OTAKU.id)
-        expect(resp).toHaveProperty('id')
-        expect(resp).toHaveProperty('props')
+        expect(resp).toHaveProperty('_id', OTAKU.id)
+        expect(resp).toHaveProperty('props', OTAKU.props)
     })
     test('FindOtakuByEmail otaku, exist in the database' , async () => {
         const otakuRepo = new InmemoryOtakuRepo()
@@ -72,8 +72,8 @@ describe('Otaku domain', () => {
        
         otakuRepo.otakus.push(OTAKU)
         const resp = await sut.execute(OTAKU.props.email)
-        expect(resp).toHaveProperty('id')
-        expect(resp).toHaveProperty('props')
+        expect(resp).toHaveProperty('_id', OTAKU.id)
+        expect(resp).toHaveProperty('props', OTAKU.props)
     })
     test('FindOtakuByOffices otaku, exist in the database' , async () => {
         const otakuRepo = new InmemoryOtakuRepo()

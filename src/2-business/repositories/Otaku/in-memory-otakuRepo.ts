@@ -25,4 +25,14 @@ export class InmemoryOtakuRepo implements otakuRepo {
 
         return null
     }
+
+    async findByOffices(office:string): Promise<Otaku[] | IEroors> {
+        const otaku = this.otakus.filter(otaku => otaku.props.offices.includes(office))
+
+        if(otaku){
+            return otaku
+        }
+
+        return null
+    }
 }

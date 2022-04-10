@@ -7,7 +7,7 @@ export class Entity<T> {
 
     
     get id() : string {
-        return this.id
+        return this._id
     }
 
     constructor(props:T, id?:string) {

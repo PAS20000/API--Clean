@@ -7,6 +7,7 @@ export interface IOtaku {
     avatar?:string
     password:string
     offices?:Array<string>
+    uploads?:Array<string>
     createdAt?:Date
 }
 

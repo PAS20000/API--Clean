@@ -1,14 +1,16 @@
 import { Entity } from "../core/Entity"
+import { Otaku } from "./otaku"
 
 export interface IAnime {
     id?:string
-    adm_id:string
+    otaku_id:string
     verify:boolean
     title:string
     categorys:Array<string>
     thumb?:string
     episodes:Array<string>
     synopsis:string
+    comments:Array<Otaku>
     createdAt?:Date
 }
 

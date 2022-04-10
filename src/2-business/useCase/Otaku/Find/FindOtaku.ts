@@ -26,12 +26,28 @@ export class FindOtakuByEmail {
     ){}
 
     async execute (email:string) : Promise<Otaku | IEroors> {
-        const otaku = await this.otakuRepo.findById(email)
+        const otaku = await this.otakuRepo.findByEmail(email)
         
         if(!otaku){
             return Errors({params:['otaku_email: ' + email], code:6})
         }
 
         return otaku
+    }
+}
+
+export class FindOtakuByOffices {
+    constructor(
+        private otakuRepo:otakuRepo
+    ){}
+
+    async execute (office:string) : Promise<Otaku[] | IEroors> {
+        const otakus = await this.otakuRepo.findByOffices(office)
+        
+        if(!otakus[0]){
+            return Errors({params:['otaku_office: ' + office], code:6})
+        }
+
+        return otakus
     }
 }
